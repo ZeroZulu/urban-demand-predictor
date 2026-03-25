@@ -253,4 +253,4 @@ reference window. Reports are generated on demand from the dashboard or via CLI.
 
 ---
 
-*Built by Shril Patel · [GitHub](https://github.com/ZeroZulu) · [LinkedIn](https://linkedin.com/in/shrilpatel) · [Live Demo](https://urban-demand-predictor-lq2ja9lznlgwe7klggp8md.streamlit.app)*
+*Built by Shril Patel · [GitHub](https://github.com/ZeroZulu) · [LinkedIn](https://www.linkedin.com/in/shril-patel-020504284/) · [Live Demo](https://urban-demand-predictor-lq2ja9lznlgwe7klggp8md.streamlit.app)*
