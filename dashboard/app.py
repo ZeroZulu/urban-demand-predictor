@@ -195,8 +195,8 @@ elif page == "📊 Model Performance":
             st.info("No data available. Run `make ingest` to load data.")
         else:
             # Use actual data range instead of NOW()
-            data_end   = pd.Timestamp("2024-06-30")
-            data_start = pd.Timestamp("2024-06-01")
+            data_end   = pd.Timestamp("2024-01-31")
+            data_start = pd.Timestamp("2024-01-01")
 
             zone = st.selectbox(
                 "Zone", list(ZONE_NAMES.keys()),
