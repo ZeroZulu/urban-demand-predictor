@@ -1,0 +1,78 @@
+# UrbanPulse — Central Configuration
+
+# ── Data collection ──────────────────────────────────────────
+data:
+  taxi:
+    base_url: "https://d37ci6vzurychx.cloudfront.net/trip-data"
+    months:
+      - "2024-01"
+      - "2024-02"
+      - "2024-03"
+      - "2024-04"
+      - "2024-05"
+      - "2024-06"
+    output_dir: "data/raw"
+
+  weather:
+    latitude: 40.7128
+    longitude: -74.0060
+    timezone: "America/New_York"
+    start_date: "2024-01-01"
+    end_date: "2024-06-30"
+    hourly_vars:
+      - temperature_2m
+      - apparent_temperature
+      - precipitation
+      - windspeed_10m
+      - relativehumidity_2m
+      - weathercode
+
+  fred:
+    series:
+      unemployment_rate: "UNRATE"
+      consumer_sentiment: "UMCSENT"
+      gas_price: "GASREGCOVW"
+      cpi: "CPIAUCSL"
+
+# ── Modeling ─────────────────────────────────────────────────
+modeling:
+  target_col: "trip_count"
+  test_months: 2          # last N months reserved for test
+  val_fraction: 0.1       # fraction of train used for early-stopping val
+
+  top_zones:              # most active zones to focus on (optional filter)
+    - 161   # Midtown Center
+    - 162   # Midtown East
+    - 230   # Times Sq / Theatre District
+    - 186   # Penn Station
+    - 237   # Upper East Side South
+    - 48    # Clinton East
+    - 163   # Midtown North
+    - 164   # Midtown South
+    - 100   # Garment District
+    - 234   # Union Square
+
+  xgboost:
+    n_trials: 50
+    early_stopping_rounds: 30
+
+  lightgbm:
+    n_estimators: 500
+    max_depth: 8
+    learning_rate: 0.05
+    num_leaves: 63
+    subsample: 0.8
+    colsample_bytree: 0.8
+
+# ── API ──────────────────────────────────────────────────────
+api:
+  host: "0.0.0.0"
+  port: 8000
+  model_version: "1.0.0"
+  shap_top_k: 5           # number of SHAP factors returned per prediction
+  ci_z_score: 1.28        # 80% confidence interval
+
+# ── Monitoring ───────────────────────────────────────────────
+monitoring:
+  reference_months: 2     # months of data used as drift reference baseline
+  report_output_dir: "outputs/drift_reports"
