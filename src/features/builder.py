@@ -68,16 +68,23 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     feat["event_attendance"] = df["event_attendance"].fillna(0).astype(float)
 
     # ── Lag features ─────────────────────────────────────────
-    # Fill NaNs (window edges) with rolling mean of target when available
-    fallback = (
-        df["trip_count"].rolling(24, min_periods=1).mean()
-        if "trip_count" in df.columns
-        else pd.Series(200.0, index=df.index)
-    )
-    feat["demand_lag_24h"]  = df["demand_lag_24h"].fillna(fallback)
-    feat["demand_lag_168h"] = df["demand_lag_168h"].fillna(fallback)
+    # At inference time, lag features arrive as 0.0 (no history available).
+    # Use a realistic fallback (200 trips/hr) so the model is not anchored to zero.
+    is_inference = len(df) == 1
 
-    if "trip_count" in df.columns:
+    if is_inference:
+        fallback = pd.Series(200.0, index=df.index)
+    else:
+        fallback = (
+            df["trip_count"].rolling(24, min_periods=1).mean()
+            if "trip_count" in df.columns
+            else pd.Series(200.0, index=df.index)
+        )
+
+    feat["demand_lag_24h"]  = df["demand_lag_24h"].replace(0.0, np.nan).fillna(fallback)
+    feat["demand_lag_168h"] = df["demand_lag_168h"].replace(0.0, np.nan).fillna(fallback)
+
+    if not is_inference and "trip_count" in df.columns:
         feat["demand_rolling_7d_avg"] = (
             df["trip_count"].rolling(window=168, min_periods=1).mean()
         )
