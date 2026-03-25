@@ -140,15 +140,16 @@ if page == "🔮 Live Prediction":
             st.error("API is offline. Run `docker-compose restart api` in your terminal first.")
         else:
             payload = {
-                "pickup_zone_id":  zone_id,
-                "hour":            target_hour,
-                "day_of_week":     target_date.weekday(),   # 0=Mon … 6=Sun
-                "month":           target_date.month,
-                "temperature_f":   temp_f,
-                "precipitation_in": round(precip / 25.4, 3),  # mm → inches
-                "wind_speed_mph":  wind,
-                "is_holiday":      False,
-                "has_civic_event": has_event,
+                "zone_id":          zone_id,
+                "datetime":         f"{target_date}T{target_hour:02d}:00:00",
+                "temperature_f":    float(temp_f),
+                "feels_like_f":     float(feels_f),
+                "precipitation_mm": float(precip),
+                "windspeed_mph":    float(wind),
+                "humidity_pct":     float(humidity),
+                "weather_code":     int(w_code),
+                "has_major_event":  has_event,
+                "event_attendance": int(attendance),
             }
             with st.spinner("Running prediction + SHAP analysis..."):
                 try:
