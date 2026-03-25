@@ -10,6 +10,11 @@
 ![MLflow](https://img.shields.io/badge/MLflow-2.11-0194E2?logo=mlflow&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-2.0-FF6600?logo=xgboost&logoColor=white)
 ![CI](https://github.com/ZeroZulu/urban-demand-predictor/actions/workflows/ci.yml/badge.svg)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://urban-demand-predictor-lq2ja9lznlgwe7klggp8md.streamlit.app)
+[![API Docs](https://img.shields.io/badge/API%20Docs-FastAPI-009688?logo=fastapi&logoColor=white)](https://urban-demand-predictor.onrender.com/docs)
+
+> 🔮 **[Try the live dashboard →](https://urban-demand-predictor-lq2ja9lznlgwe7klggp8md.streamlit.app)**  
+> ⚡ **[Explore the API →](https://urban-demand-predictor.onrender.com/docs)**
 
 ---
 
@@ -248,4 +253,4 @@ reference window. Reports are generated on demand from the dashboard or via CLI.
 
 ---
 
-*Built by Shril Patel · [GitHub](https://github.com/ZeroZulu) · [LinkedIn](https://linkedin.com/in/shrilpatel)*
+*Built by Shril Patel · [GitHub](https://github.com/ZeroZulu) · [LinkedIn](https://linkedin.com/in/shrilpatel) · [Live Demo](https://urban-demand-predictor-lq2ja9lznlgwe7klggp8md.streamlit.app)*
