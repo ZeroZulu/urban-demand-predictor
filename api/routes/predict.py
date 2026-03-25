@@ -59,12 +59,12 @@ def _request_to_row(req: PredictionRequest) -> dict:
         "is_snowing":         int(71 <= req.weather_code <= 77),
         "has_major_event":    int(req.has_major_event),
         "event_attendance":   req.event_attendance,
-        "demand_lag_24h":     None,
-        "demand_lag_168h":    None,
-        "trip_count":         None,
-        "unemployment_rate":  None,
-        "gas_price_avg":      None,
-        "consumer_sentiment": None,
+        "demand_lag_24h":     0.0,
+        "demand_lag_168h":    0.0,
+        "trip_count":         0.0,
+        "unemployment_rate":  0.0,
+        "gas_price_avg":      0.0,
+        "consumer_sentiment": 0.0,
     }
 
 
